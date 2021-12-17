@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 import Article from './Article';
@@ -17,6 +17,7 @@ const View = (props) => {
     useEffect(() => {
         axiosWithAuth().get('/articles')
             .then(res => {
+                console.log(res.data);
                 setArticles(res.data);
             })
             .catch(err => {
@@ -25,7 +26,13 @@ const View = (props) => {
     }, [id])
 
     const handleDelete = (id) => {
-
+        axiosWithAuth().delete(`/articles/${id}`)
+            .then(res => {
+                props.deleteArticle(id);
+            })
+            .catch(err => {
+                console.error(err);
+            })
     }
 
     const handleEdit = (article) => {
