@@ -11,7 +11,8 @@ const Login = () => {
 
     const [credentials, setCredentials] = useState({
         username: "",
-        password: ""
+        password: "",
+        error: false
     })
 
     // const [formError, setFormError] = useState("");

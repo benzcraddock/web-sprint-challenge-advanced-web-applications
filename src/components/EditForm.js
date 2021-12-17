@@ -15,6 +15,17 @@ const EditForm = (props)=> {
     const [article, setArticle] = useState(initialArticle);
     const {handleEdit, handleEditCancel, editId} = props;
 
+    // add on mount to retrieve article with id 'editId'
+    useEffect(() => {
+        axiosWithAuth().get(`/articles/${editId}`)
+            .then(res => {
+                setArticle(res.data);
+            })
+            .catch(err => {
+                console.error(err);
+            })
+    }, [])
+
     const handleChange = (e)=> {
         setArticle({
             ...article,
@@ -25,14 +36,6 @@ const EditForm = (props)=> {
     const handleSubmit = (e) => {
         e.preventDefault();
         handleEdit(article);
-
-        axiosWithAuth().put(`/articles/${editId}`, article)
-            .then(res => {
-                props.setArticles(res.data);
-            })
-            .catch(err => {
-                console.error(err);
-            })
     }
 
     const handleCancel = (e) => {

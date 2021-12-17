@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
@@ -27,7 +26,7 @@ const View = (props) => {
     const handleDelete = (id) => {
         axiosWithAuth().delete(`/articles/${id}`)
             .then(res => {
-                props.deleteArticle(id);
+                setArticles(res.data);
             })
             .catch(err => {
                 console.error(err);
@@ -35,6 +34,13 @@ const View = (props) => {
     }
 
     const handleEdit = (article) => {
+        axiosWithAuth().put(`/articles/${article.id}`, article)
+            .then(res => {
+                setArticles(res.data);
+            })
+            .catch(err => {
+                console.error(err);
+            })
     }
 
     const handleEditSelect = (id)=> {
@@ -46,24 +52,27 @@ const View = (props) => {
         setEditing(false);
     }
 
-    return(<ComponentContainer>
-        <HeaderContainer>View Articles</HeaderContainer>
-        <ContentContainer flexDirection="row">
-            <ArticleContainer>
+    return(
+        <Container>
+        <ComponentContainer> 
+            <HeaderContainer>View Articles</HeaderContainer>
+            <ContentContainer flexDirection="row">
+                <ArticleContainer>
+                    {
+                        articles.map(article => {
+                            return <ArticleDivider key={article.id}>
+                                <Article key={article.id} article={article} handleDelete={handleDelete} handleEditSelect={handleEditSelect}/>
+                            </ArticleDivider>
+                        })
+                    }
+                </ArticleContainer>
+                
                 {
-                    articles.map(article => {
-                        return <ArticleDivider key={article.id}>
-                            <Article key={article.id} article={article} handleDelete={handleDelete} handleEditSelect={handleEditSelect}/>
-                        </ArticleDivider>
-                    })
+                    editing && <EditForm editId={editId} handleEdit={handleEdit} handleEditCancel={handleEditCancel}/>
                 }
-            </ArticleContainer>
-            
-            {
-                editing && <EditForm editId={editId} handleEdit={handleEdit} handleEditCancel={handleEditCancel}/>
-            }
-        </ContentContainer>
-    </ComponentContainer>);
+            </ContentContainer>
+        </ComponentContainer>
+    </Container>);
 }
 
 export default View;
