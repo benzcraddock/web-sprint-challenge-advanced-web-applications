@@ -1,12 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+
 const Login = () => {
+
+    const { push } = useHistory();
+
+    const [credentials, setCredentials] = useState({
+        username: "",
+        password: ""
+    })
+
+    // const [formError, setFormError] = useState("");
+
+    const handleChange = (e) => {
+        setCredentials({
+            ...credentials,
+            [e.target.name]:e.target.value
+        });
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios.post('http://localhost:5000/api/login', credentials)
+            .then(res => {
+                console.log(res);
+                localStorage.setItem("token", res.data.token)
+                push('/view');
+            })
+            .catch(err => {
+                console.error(err);
+            })
+    }
     
     return(<ComponentContainer>
         <ModalContainer>
             <h1>Welcome to Blogger Pro</h1>
             <h2>Please enter your account information.</h2>
+            <FormGroup onSubmit={handleSubmit}>
+                <Label htmlFor="username">
+                    Username:
+                </Label>
+                <Input onChange={handleChange} name="username" id="username"/>
+
+                <Label htmlFor="password">
+                    Password:
+                </Label>
+                <Input onChange={handleChange} name="password" id="password"/>
+
+                <Button id="submit">
+                    Click to Login
+                </Button>
+            </FormGroup>
+            <ErrorContainer>
+                <p id="error">Incorrect username / password combination.</p>
+            </ErrorContainer>
         </ModalContainer>
     </ComponentContainer>);
 }
@@ -39,6 +89,7 @@ const Label = styled.label`
     display: block;
     text-align: left;
     font-size: 1.5rem;
+    margin-top: 2%;
 `
 
 const FormGroup = styled.form`
@@ -54,4 +105,11 @@ const Input = styled.input`
 const Button = styled.button`
     padding:1rem;
     width: 100%;
+    margin-top: 4%;
+    background: cornflowerblue;
+    color: white;
+`
+
+const ErrorContainer = styled.div`
+    color: crimson;
 `
