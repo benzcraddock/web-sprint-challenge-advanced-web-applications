@@ -97,9 +97,9 @@ In this project, you will demonstrate your mastery of these skills by creating *
 
 ### Advanced Testing
 > *Add the following tests within Article.test.js.*
-* [ ] Build a test that shows the `Article` component, given the correct props, can render without errors.
-* [ ] Build a test that shows that when a correctly formatted article is passed into the `Article` component, the correct headline, author, summary and body are displayed.
-* [ ] The `Article` component should display "Associated Press" when an author attribute is not avalible. Build a test that verifies that that is true.
+* [X] Build a test that shows the `Article` component, given the correct props, can render without errors.
+* [X] Build a test that shows that when a correctly formatted article is passed into the `Article` component, the correct headline, author, summary and body are displayed.
+* [X] The `Article` component should display "Associated Press" when an author attribute is not avalible. Build a test that verifies that that is true.
 * [ ] Build a test that show that when the deleteButton is pressed on an Article, the handleDelete functional property is executed.
 
 ## Important Notes:
@@ -110,10 +110,10 @@ In this project, you will demonstrate your mastery of these skills by creating *
 * It is better to submit a challenge that meets MVP than one that attempts too much and does not.
 
 ## Submission format
-* [ ] Submit via Codegrade by commiting and pushing any new changes to **your main branch.**
-* [ ] Check Codegrade before the deadline to compare its results against your local tests.
-* [ ] Check Codegrade on the days following the Sprint Challenge for reviewer feedback. For more information on how to access and read your feedback, check [here](https://www.notion.so/lambdaschool/How-to-View-Feedback-in-CodeGrade-c5147cee220c4044a25de28bcb6bb54a)
-* [ ] New commits will be evaluated by Codegrade if pushed before the sprint challenge deadline.
+* [X] Submit via Codegrade by commiting and pushing any new changes to **your main branch.**
+* [X] Check Codegrade before the deadline to compare its results against your local tests.
+* [X] Check Codegrade on the days following the Sprint Challenge for reviewer feedback. For more information on how to access and read your feedback, check [here](https://www.notion.so/lambdaschool/How-to-View-Feedback-in-CodeGrade-c5147cee220c4044a25de28bcb6bb54a)
+* [X] New commits will be evaluated by Codegrade if pushed before the sprint challenge deadline.
 
 ## Interview Questions
 
@@ -121,8 +121,14 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. Explain what a token is used for.
 
+A token is used for authentication purposes and providing users access to apps and websites. 
+
 2. What steps can you take in your web apps to keep your data secure?
 
+To keep your data secured, you can build protected routes that offer an additional layer of protection and will only render with authentication. When client makes a login request, they send a username and password key to the server, which then checks the provided credentials against the database. If the user is authenticated, then the token is returned to the user. 
+
 3. Describe how web servers work.
+
+
 
 4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
