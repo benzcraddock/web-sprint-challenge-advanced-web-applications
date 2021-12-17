@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
 import { useHistory } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
-
 
 const Login = () => {
 
@@ -14,8 +12,6 @@ const Login = () => {
         password: "",
         error: false
     })
-
-    // const [formError, setFormError] = useState("");
 
     const handleChange = (e) => {
         setCredentials({
@@ -30,9 +26,13 @@ const Login = () => {
             .then(res => {
                 localStorage.setItem("token", res.data.token)
                 push('/view');
+                console.log(res);
             })
             .catch(err => {
-                console.error(err);
+                setCredentials({
+                    ...credentials,
+                    error: err.response.data.error
+                })
             })
     }
     
@@ -56,7 +56,7 @@ const Login = () => {
                 </Button>
             </FormGroup>
             <ErrorContainer>
-                <p id="error">Incorrect username / password combination.</p>
+                <p id="error">{credentials.error}</p>
             </ErrorContainer>
         </ModalContainer>
     </ComponentContainer>);
