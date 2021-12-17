@@ -121,7 +121,7 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. Explain what a token is used for.
 
-A token is used for authentication purposes and providing users access to apps and websites. 
+A token is unique and is used for authentication purposes and providing users access to apps and websites. 
 
 2. What steps can you take in your web apps to keep your data secure?
 
@@ -129,6 +129,8 @@ To keep your data secured, you can build protected routes that offer an addition
 
 3. Describe how web servers work.
 
-
+First, on the hardware side of things, a web server can be computer that stores code for a website or web app and offers hosting for these websites to be shared. Second, on the software side of things, a web server can be a program or software that runs on a computer and retrieves project code to users upon request. There are static web servers that contain hardcoded data that doesn't change and consist of only a computer and HTTP server, and there are dynamic web servers that are more complicated than static web servers by containing additional software like an application database and server. The application server in a static web server sends hosted files as they are to your browser, while dynamic web servers updates hosted files BEFORE sending content to your browser via HTTP browser. In a static server, a client makes a request to a server and/or API, which then sends data in the form of a full site back to the client. In a dynamic server, a client makes a request to a server and/or an API, which then reaches out to a database before reaching back to the client with updated information.
 
 4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+
+When interfacing with APIs and web servers, we use the following HTTP methods that can be mapped to CRUD process (create, read, update, delete): POST -> create, GET -> read, PUT -> update, DELETE -> delete.
